@@ -2,64 +2,61 @@
 
 const Material = require('../models/materialModel');
 
+function getAllMaterials(req, res) {
+    Material.find({}, (err, materials) => {
+        if (err) return res.status(500).send({ message: `Internal Server Error ${err}`})
+        if (!materials) return res.status(403).send({ message: 'No materials were found'})
+
+        res.status(200).send(materials)
+    })
+}
+
 function insertMaterial(req, res){
-
-    let material = new Material();
-    let bd = req.body;
-
-    material.name = bd.name;
-    material.description = bd.description;
-    material.date_time = bd.date_time;
-    material.repeat = bd.repeat;
-    material.status = bd.status;
-    material.id_user = bd.id_user;
-
-    material.save((err, controlStg)=>{
+    let material = Material(req.body)
+    material.save((err, materialStg)=>{
         if(err) return res.status(500).send({
             message: `Something is wrong!`
         });
 
-        res.status(200).send({materialStg});
-
+        res.status(200).send("Material inserted successfully");
     });
 
 }
 
 function getMaterial(req, res){
-    let MaterialId = req.params.MaterialId;
-    Material.findById(HERE,(err,control)=>{
-        if(err) return res.status(500).send({message:"Internal Server Error"});
+    let MaterialId = req.params.MaterialId
+    Material.findById(MaterialId, (err,material)=>{
+        if(err) return res.status(500).send({message:`Internal Server Error ${err}`});
         if(!material) return res.status(403).send({message:"Not found"});
 
-        res.status(200).send({Material});
+        res.status(200).send(material);
     });
 }
 
 function updateMaterial(req, res){
-    let materialId = req.params.groupId;
+    let MaterialId = req.params.MaterialId;
     let update = req.body;
 
-    Material.findByIdAndUpdate(groupId,update,(err,materialUpdated)=>{
+    Material.findByIdAndUpdate(MaterialId, update, (err,materialUpdated) => {
         if(err) return res.status(500).send({message:"Internal Server Error"});
-        res.status(200).send({material:materialUpdated})
+        res.status(200).send("Material updated successfully")
     });
 }
 
 function deleteMaterial(req, res){
-    let materialId = req.params.materialId;
+    let MaterialId = req.params.MaterialId;
 
-    material.findById(groupId,(err,control)=>{
-        if(err) return res.status(500).send({message:"Ocurrió un error interno"});
+    Material.findByIdAndRemove(MaterialId, (err, materialStg)=>{
+        if(err) return res.status(500).send({message:"Internal Server Error."});
 
-        material.remove(err =>{
-            if(err) return res.status(500).send({message:"Internal Error Server"});
-            if(!control) return req.staus(404).send({message:"Not found"});
-            res.status(200).send({message:"El material ha sido eliminado"});
-        });
+        res.status(200).send("Material removed successfully")
     });
 }
 
-module.exports = {insertMaterial, 
-				getMaterial, 
-				updateMaterial,
-				deleteMaterial}
+module.exports = {
+    getAllMaterials,
+    insertMaterial, 
+    getMaterial, 
+    updateMaterial,
+    deleteMaterial
+}
