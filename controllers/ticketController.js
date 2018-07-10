@@ -3,24 +3,30 @@
 const Ticket = require('../models/ticketModel');
 
 function getTicket(req,res){
-    let ticketId = req.params.Id_tickets;
-    Ticket.findById(ticketId,(err,tickets)=>{
+
+    let ticketId = req.params.id_tickets;
+    
+    Ticket.findById(ticketId,(err,ticket)=>{
+        
         if(err) return res.status(500).send({
-            message: `Something is wrong!: ${err}`
+            message: `Something is wrong!`
         });
-        if(!tickets) return res.status(500).send({
-            message: `No tickets ${err}`
+
+        if(!ticket) return res.status(404).send({
+            message: `No tickets`
         });
-        res.status(200).send(tickets);
+
+        res.status(200).send(ticket);
     });
 }
+
 function updateTicket(req, res){
-    let ticketId = req.params.Id_tickets;
+    let ticketId = req.params.id_tickets;
     let update = req.body
 
     Ticket.findByIdAndUpdate(ticketId, update, (err, ticketUp)=>{
         if(err) return res.status(500).send({
-            message: `Something is wrong!: ${err}`
+            message: `Something is wrong!`
         });
 
         res.status(200).send({message:"Updated"})
@@ -32,14 +38,14 @@ function insertTicket(req,res){
 
     ticket.save((err,ticketStg)=>{
         if(err) return res.status(500).send({
-            message: `Something is wrong!: ${err}`
+            message: `Something is wrong!`
         });
-        res.status(200).send({ticketStg});
+        res.status(200).send(ticketStg);
     });
 }
 
 module.exports = {
     getTicket,
-    udpateTicket,
+    updateTicket,
     insertTicket
 }
