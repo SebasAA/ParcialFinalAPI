@@ -34,6 +34,8 @@ const productSchema = Schema({
         required: true,
         enum:["accesorios","tazas","textiles","artesanales", "otros"]
     },
+    //new parameter
+    productImage: {type: String, required: true},
 
     product_materials:[{
         _id:false,

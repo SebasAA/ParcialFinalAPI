@@ -17,6 +17,7 @@ function getProduct(req, res){
 }
 
 function insertNewProduct(req, res){
+
     let newProduct = new Product();
     let bd = req.body;
 
@@ -26,6 +27,7 @@ function insertNewProduct(req, res){
     newProduct.stock =  bd.stock;
     newProduct.sold =  bd.sold;
     newProduct.category =  bd.category;
+    newProduct.productImage = req.file.path;
 
     newProduct.save((err, productSvd)=>{
         if(err) return res.status(500).send({message:"Internal Error"});
@@ -80,7 +82,7 @@ function insertMaterial(req, res){
                 product.product_materials.splice(product.product_materials.indexOf(act),1)
             }
         });
-    
+
         product.product_materials.push({id_material: id_material_, quantity:cant});
 
         product.save((err,productSave)=>{

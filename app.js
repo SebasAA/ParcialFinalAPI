@@ -11,6 +11,7 @@ const routesUser = require("./routes/userRoutes")
 const routesTicket = require("./routes/ticketRoutes")
 const routesMaterial = require("./routes/materialRoutes")
 
+app.use('/uploads', express.static('uploads'));//primer parametro permite que se incluya el nombre del folder para que se busque en un browser
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
