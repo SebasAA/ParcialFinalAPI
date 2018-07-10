@@ -31,6 +31,8 @@ function updateUser(req, res){
             message: `Something is wrong!: ${err}`
         });
 
+        if(!userUp) return res.status(404).send({message:"not found"})
+
         res.status(200).send({message:"Updated"})
     });
 };
