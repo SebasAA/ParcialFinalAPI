@@ -23,11 +23,11 @@ const ticketSchema = Schema({
             ref: "Product",
             required: true
         },
-        quantity:number    
+        quantity:Number    
     }],
 
     total:{
-        type: number,
+        type: Number,
         required:true
     },
 
