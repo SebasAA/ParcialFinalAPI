@@ -36,6 +36,7 @@ const productSchema = Schema({
     },
 
     product_materials:[{
+        _id:false,
         id_material: {
             type: mongoose.Schema.Types.ObjectId,
             ref:'Material',

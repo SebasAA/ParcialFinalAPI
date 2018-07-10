@@ -20,7 +20,7 @@ function decodeToken(token){
             resolve(payload.sub)
         }catch(err){
             reject({
-                status:500,
+                status:401,
                 message:"Token Invalido"
             });
         }
