@@ -16,7 +16,7 @@ function insertMaterial(req, res){
 
     material.save((err, controlStg)=>{
         if(err) return res.status(500).send({
-            message: `Something is wrong!: ${err}`
+            message: `Something is wrong!`
         });
 
         res.status(200).send({materialStg});
@@ -58,3 +58,8 @@ function deleteMaterial(req, res){
         });
     });
 }
+
+module.exports = {insertMaterial, 
+				getMaterial, 
+				updateMaterial,
+				deleteMaterial}
