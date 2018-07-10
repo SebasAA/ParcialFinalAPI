@@ -10,22 +10,22 @@ const productSchema = Schema({
     },
 
     cost:{
-        type: number,
+        type: Number,
         required: true
     },
 
     price:{
-        type: number,
+        type: Number,
         required: true
     },
 
     stock:{
-        type: number,
+        type: Number,
         required: true
     },
 
     sold:{
-        type: number,
+        type: Number,
         required: true
     },
 
@@ -43,7 +43,7 @@ const productSchema = Schema({
             required: true
         },
         quantity:{
-            type: number,
+            type: Number,
             required:true
         }
     }]
