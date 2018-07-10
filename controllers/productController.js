@@ -7,16 +7,7 @@ function getAllProducts(req, res){
 }
 
 function insertNewProduct(req, res){
-    let newProduct = new Product();
-    let bd = req.body;
-
-    newProduct.name =  bd.name;
-    newProduct.cost =  bd.cost;
-    newProduct.price =  bd.price;
-    newProduct.stock =  bd.stock;
-    newProduct.sold =  bd.sold;
-    newProduct.category =  bd.category;
-    newProduct.product_materials =  bd.product_materials;
+    let newProduct = new Product(req.body);
 
     newProduct.save((err, productSvd)=>{
         if(err) return res.status(500).send({message:"Internal Error"});
