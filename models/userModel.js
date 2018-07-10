@@ -11,7 +11,7 @@ let UserSchema = Schema({
 	password:{
 		type: String,
 		required: true	
-	} 
+	},
 	rol_type:{
 		type: String,
 		required: true
