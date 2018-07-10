@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ticketSchema = Schema({
-    final_user = {
+    final_user: {
         type: String, 
         required: true
     }, 
