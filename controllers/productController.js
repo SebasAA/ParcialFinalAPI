@@ -52,7 +52,7 @@ function deleteProduct(req, res){
     Product.findById(id_product, (err, prd)=>{
         if(err) return res.status(500).send({message:"Internal Error"});
 
-        if(!productFnd) return res.status(404).send({message:"Not found"})
+        if(!prd) return res.status(404).send({message:"Not found"})
 
         prd.remove(err=>{
             if(err) return res.status(500).send({message:"Internal Error"});
