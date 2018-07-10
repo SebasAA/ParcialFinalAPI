@@ -16,7 +16,6 @@ function insertNewProduct(req, res){
     newProduct.stock =  bd.stock;
     newProduct.sold =  bd.sold;
     newProduct.category =  bd.category;
-    newProduct.product_materials =  bd.product_materials;
 
     newProduct.save((err, productSvd)=>{
         if(err) return res.status(500).send({message:"Internal Error"});
