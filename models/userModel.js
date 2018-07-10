@@ -14,7 +14,8 @@ let UserSchema = Schema({
 	},
 	rol_type:{
 		type: String,
-		required: true
+		required: true,
+		enum: ["admin", "customer"]
 	}
 });
 
